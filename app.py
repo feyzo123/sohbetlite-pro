@@ -66,7 +66,7 @@ def init_db():
                 conn.execute(stmt)
         conn.commit()
 
-@app.before_first_request
+@app.before_request
 def _startup():
     init_db()
 
