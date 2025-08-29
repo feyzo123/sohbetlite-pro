@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>FeyzChat</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emoji-button@4.6.4/dist/index.min.js"></script>
+</head>
+<body class="chat-body">
+  <div class="chat-wrap">
+    <div class="chat-header">
+      <div class="room-name">Oda: <b id="roomName"></b></div>
+      <div class="online" id="online"></div>
+    </div>
+
+    <div id="messages" class="messages"></div>
+    <div id="typing" class="typing"></div>
+
+    <div class="chat-input">
+      <button id="emojiBtn" class="icon-btn" title="Emoji">😊</button>
+      <input id="msg" placeholder="Mesaj yaz..." autocomplete="off">
+      <label class="icon-btn attach" title="Dosya">
+        📎
+        <input id="filePick" type="file" hidden>
+      </label>
+      <button id="sendBtn">Gönder</button>
+    </div>
+
+    <div class="brand small">FeyzChat | • by Feyzullah</div>
+  </div>
+
+  <script src="/static/app.js"></script>
+  <script>
+    // URL’den parametreler
+    const url = new URL(location.href);
+    const room = url.searchParams.get('room') || '';
+    const user = url.searchParams.get('user') || 'Anonim';
+    const pass = url.searchParams.get('pass') || '';
+
+    document.getElementById('roomName').textContent = room;
+
+    window.FZC = { room, user, pass };
+  </script>
+</body>
+</html>
